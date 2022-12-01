@@ -10,12 +10,18 @@ let playerScore = 0;
 let computerScore = 0;
 
 function playRound(event) {
+
+    
     let computerChoice = getComputerChoice()
+    player.textContent = `Player Score: ${playerScore}`
+    computer.textContent = `Computer Score: ${computerScore}`
+    gameWinner.textContent = `Click to WIN!!!!`
 
     if((event.target.className === 'rock' && computerChoice === 'scissors') || 
         (event.target.className === 'scissors' && computerChoice === 'paper') || 
         (event.target.className === 'paper' && computerChoice === 'rock')) {
             console.log(`You won! ${event.target.className} beats ${computerChoice}`)
+           
             //console.log(event.target.className)
             //console.log(computerChoice)
             playerScore ++;
@@ -24,15 +30,15 @@ function playRound(event) {
             roundWinner.textContent = `You won! ${event.target.className} beats ${computerChoice}`
             player.textContent = `Player Score: ${playerScore}`
             result = `You won! ${event.target.className} beats ${computerChoice}`
-            return result
+            
     } else if (event.target.className == computerChoice) {
             console.log('TIE')
             //console.log(event.target.className)
             //console.log(computerChoice)
             roundWinner.textContent = 'TIE'
             result = 'TIE'
-            return result
-    } else 
+            
+    } else {
             console.log(`You lost... ${computerChoice} beats ${event.target.className}`)
             //console.log(event.target.className)
             //console.log(computerChoice)
@@ -42,18 +48,36 @@ function playRound(event) {
             roundWinner.textContent = `You lost... ${computerChoice} beats ${event.target.className}`
             computer.textContent = `Computer Score: ${computerScore}`
             result = `You lost... ${computerChoice} beats ${event.target.className}`
-            return result
+    }
+    checkWin(playerScore, computerScore)
+            
+}
+
+function checkWin(pScore, cScore) {
+    if(pScore == 5) {
+        playerScore = 0;
+        computerScore = 0;
+        gameWinner.textContent = `Player Wins`
+    } else if (cScore == 5) {
+        playerScore = 0;
+        computerScore = 0;
+        gameWinner.textContent = `Computer Wins`
+    }
 }
 
 
-
-
+//Dom Elements
 let playTime = document.querySelectorAll('.buttons')
 let player = document.querySelector('.player')
 let computer = document.querySelector('.computer')
 let roundWinner = document.querySelector('.roundWinner')
+let gameWinner = document.querySelector('.gameWinner')
+
+//playTime.forEach(item => item.addEventListener('click', playRound))
 
 playTime.forEach(item => item.addEventListener('click', playRound))
+
+
 
 
 // Write a NEW function called game(). Call the playRound function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end. 
