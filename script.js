@@ -5,39 +5,55 @@ function getComputerChoice() {
         : 'scissors'
 }
 
-function playRound(event) {
-    let botChoice = getComputerChoice()
-    let result = ''
+let result = ''
+let playerScore = 0;
+let computerScore = 0;
 
-    if((event.target.className === 'rock' && botChoice === 'scissors') || 
-        (event.target.className === 'scissors' && botChoice === 'paper') || 
-        (event.target.className === 'paper' && botChoice === 'rock')) {
-            console.log(`You won! ${event.target.className} beats ${botChoice}`)
+function playRound(event) {
+    let computerChoice = getComputerChoice()
+
+    if((event.target.className === 'rock' && computerChoice === 'scissors') || 
+        (event.target.className === 'scissors' && computerChoice === 'paper') || 
+        (event.target.className === 'paper' && computerChoice === 'rock')) {
+            console.log(`You won! ${event.target.className} beats ${computerChoice}`)
             //console.log(event.target.className)
-            //console.log(botChoice)
-            // result = 'player'
-            // return result
-    } else if (event.target.className == botChoice) {
+            //console.log(computerChoice)
+            playerScore ++;
+            console.log(`Player score = ${playerScore}`)
+            
+            roundWinner.textContent = `You won! ${event.target.className} beats ${computerChoice}`
+            player.textContent = `Player Score: ${playerScore}`
+            result = `You won! ${event.target.className} beats ${computerChoice}`
+            return result
+    } else if (event.target.className == computerChoice) {
             console.log('TIE')
             //console.log(event.target.className)
-            //console.log(botChoice)
-            // result = 'TIE'
-            // return result
+            //console.log(computerChoice)
+            roundWinner.textContent = 'TIE'
+            result = 'TIE'
+            return result
     } else 
-            console.log(`You lost... ${botChoice} beats ${event.target.className}`)
+            console.log(`You lost... ${computerChoice} beats ${event.target.className}`)
             //console.log(event.target.className)
-            //console.log(botChoice)
-            // result = 'computer'
-            // return result
+            //console.log(computerChoice)
+            computerScore ++;
+            console.log(`Computer score = ${computerScore}`)
+            
+            roundWinner.textContent = `You lost... ${computerChoice} beats ${event.target.className}`
+            computer.textContent = `Computer Score: ${computerScore}`
+            result = `You lost... ${computerChoice} beats ${event.target.className}`
+            return result
 }
 
 
 
-let playTime = document.querySelectorAll('.buttons')
 
-playTime.forEach(item => {
-    item.addEventListener('click', playRound)
-})
+let playTime = document.querySelectorAll('.buttons')
+let player = document.querySelector('.player')
+let computer = document.querySelector('.computer')
+let roundWinner = document.querySelector('.roundWinner')
+
+playTime.forEach(item => item.addEventListener('click', playRound))
 
 
 // Write a NEW function called game(). Call the playRound function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end. 
