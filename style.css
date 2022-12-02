@@ -1,0 +1,104 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+  }
+  html, body {
+    height: 100%;
+  }
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  input, textarea, select {
+    font: inherit;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    /* hyphens: auto; */
+  }
+  #root, #__next {
+    isolation: isolate;
+  }
+
+/*////////////////////
+///////////////////*/
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 3rem;
+    color: red;
+    margin-bottom: 3rem;
+}
+
+.players {
+    display: flex;
+    gap: 2rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.choose {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.buttons {
+    display: flex;
+    margin-bottom: 4rem;
+    gap: 1rem;
+}
+
+img {
+    
+    height: auto;
+    max-width: 150px;
+}
+
+.roundWinner {
+    font-size: 2rem;
+}
+
+.winnerBooth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gameWinner {
+    content-visibility: hidden;
+    font-size: 2rem;
+    color: rgb(44, 136, 185);
+    animation: glowing 1300ms infinite;
+}
+
+@keyframes glowing {
+    0% {
+      background-color: #2ba805;
+      box-shadow: 0 0 5px #2ba805;
+    }
+    50% {
+      background-color: #49e819;
+      box-shadow: 0 0 20px #49e819;
+    }
+    100% {
+      background-color: #2ba805;
+      box-shadow: 0 0 5px #2ba805;
+    }
+  }
+
+
